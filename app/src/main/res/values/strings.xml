@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SteadyWork</string>
+    <string name="start">Commencer</string>
+    <string name="minutes">Minutes</string>
+    <string name="hours">Heures</string>
+    <string name="title">StudyWork</string>
+</resources>

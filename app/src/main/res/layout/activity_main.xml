@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <!-- Titre de l'application -->
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:paddingBottom="16dp"
+        android:gravity="center"
+        tools:ignore="HardcodedText" />
+
+    <!-- Entrée des heures -->
+    <EditText
+        android:id="@+id/inputHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/hours"
+        android:inputType="number"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+    <!-- Entrée des minutes -->
+    <EditText
+        android:id="@+id/inputMinutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/minutes"
+        android:inputType="number"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+    <!-- Bouton pour commencer le chronomètre -->
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start"
+        android:textSize="18sp"
+        android:paddingTop="16dp" />
+
+    <!-- Chronomètre pour afficher le temps restant -->
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:paddingTop="16dp"
+        android:gravity="center" />
+
+</LinearLayout>
