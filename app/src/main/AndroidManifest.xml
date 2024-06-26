@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SteadyWork"
-        tools:targetApi="34">
+        tools:targetApi="34"
+        android:protectionLevel="signature">
 
         <!-- Activité principale -->
         <activity
@@ -38,7 +39,8 @@
             android:launchMode="singleInstance"
             android:taskAffinity=""
             android:theme="@style/Theme.AppCompat.Dialog"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+            android:exported="true" />
 
         <receiver
             android:name=".listener.SteadyServiceReceiver"

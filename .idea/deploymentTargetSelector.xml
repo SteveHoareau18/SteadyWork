@@ -10,6 +10,7 @@
       </SelectionState>
       <SelectionState runConfigName="SteadyActivity">
         <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
       </SelectionState>
     </selectionStates>
   </component>
