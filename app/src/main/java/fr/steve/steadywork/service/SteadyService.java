@@ -31,6 +31,7 @@ public class SteadyService extends Service implements SensorEventListener {
     private Handler handler;
     private SteadyRunnable runnable;
     private boolean isFlat;
+    private boolean isMooving;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -80,8 +81,9 @@ public class SteadyService extends Service implements SensorEventListener {
                     return;
                 }
                 continueRunnable();
-                if (!isFlat) {
-                    Log.d(SteadyActivity.LOG_TAG.DEBUG.getTag(), "notFlat");
+                if (!isFlat || isMooving) {
+                    if(!isFlat) Log.d(SteadyActivity.LOG_TAG.DEBUG.getTag(), "notFlat");
+                    if(isMooving) Log.d(SteadyActivity.LOG_TAG.DEBUG.getTag(), "isMooving");
                     if (usedInSecondsCount % 20 == 0) {
                         Notification buildOnUseCellphoneNotification = buildOnUseCellphoneNotification();
                         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -115,8 +117,11 @@ public class SteadyService extends Service implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        float x = Math.abs(event.values[0]);
+        float y = Math.abs(event.values[1]);
         float z = Math.abs(event.values[2]);
         isFlat = z > 8 && z < 10;
+        isMooving = x>1 || y>1;
     }
 
     @Override
