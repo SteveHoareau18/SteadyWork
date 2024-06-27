@@ -7,6 +7,8 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,6 +17,9 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -32,6 +37,8 @@ public class SteadyService extends Service implements SensorEventListener {
     private SteadyRunnable runnable;
     private boolean isFlat;
     private boolean isMooving;
+    private WindowManager windowManager;
+    private View overlayView;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -84,7 +91,7 @@ public class SteadyService extends Service implements SensorEventListener {
                 if (!isFlat || isMooving) {
                     if(!isFlat) Log.d(SteadyActivity.LOG_TAG.DEBUG.getTag(), "notFlat");
                     if(isMooving) Log.d(SteadyActivity.LOG_TAG.DEBUG.getTag(), "isMooving");
-                    if (usedInSecondsCount % 20 == 0) {
+                    if (usedInSecondsCount % 20 == 0 && usedInSecondsCount != 0) {
                         Notification buildOnUseCellphoneNotification = buildOnUseCellphoneNotification();
                         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                         notificationManager.notify(NOTIFICATION_ID, buildOnUseCellphoneNotification);
