@@ -1,9 +1,11 @@
 package fr.steve.steadywork;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -134,7 +136,24 @@ public class SteadyActivity extends Activity implements Serializable {
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     private void createChronometer(SharedPreferences prefs) {
+        //CHECK PERMISSIONS
+        if (!Settings.canDrawOverlays(this)) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + getPackageName()));
+            startActivityForResult(intent, 1234);
+            return;
+        }
+        if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE, getPackageName());
+            startActivity(intent);
+            Toast.makeText(this, "Vous devez accepter de recevoir des notifications pour continuer...", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         int hours = parseIntOrZero(inputHours.getText().toString());
         int minutes = parseIntOrZero(inputMinutes.getText().toString());
 
@@ -152,14 +171,8 @@ public class SteadyActivity extends Activity implements Serializable {
 
         Intent serviceIntent = new Intent(this, SteadyService.class);
         serviceIntent.putExtra("activity", this);
-        if (!Settings.canDrawOverlays(this)) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + getPackageName()));
-            startActivityForResult(intent, 1234);
-            return;
-        } else {
-            startForegroundService(serviceIntent);
-        }
+
+        startForegroundService(serviceIntent);
 
         int seconds = (int) (totalTimeMillis / 1000) % 60;
 
