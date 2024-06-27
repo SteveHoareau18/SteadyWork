@@ -156,6 +156,7 @@ public class SteadyActivity extends Activity implements Serializable {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, 1234);
+            return;
         } else {
             startForegroundService(serviceIntent);
         }
