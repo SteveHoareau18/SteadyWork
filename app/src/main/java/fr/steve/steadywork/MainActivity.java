@@ -36,7 +36,6 @@ public class MainActivity extends Activity implements SensorEventListener {
     private Button btnStart;
 
     private boolean isRunning = false;
-    private Intent intent;
     private HelloService helloService;
 
     @Override
@@ -60,7 +59,7 @@ public class MainActivity extends Activity implements SensorEventListener {
                 startChronometer();
             }
         });
-        intent = new Intent(this, HelloService.class);
+        Intent intent = new Intent(this, HelloService.class);
         if(!isBound) {
             startService(intent);
         }else{
