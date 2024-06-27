@@ -143,6 +143,7 @@ public class SteadyActivity extends Activity implements Serializable {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, 1234);
+            Toast.makeText(this, "Vous devez accepter de mettre l'application en premier plan pour continuer...", Toast.LENGTH_LONG).show();
             return;
         }
         if (checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
