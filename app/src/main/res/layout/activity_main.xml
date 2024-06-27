@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/myLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
 
@@ -14,11 +15,11 @@
         android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="16dp"
         android:text="@string/title"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:paddingBottom="16dp"
-        android:gravity="center"
         tools:ignore="HardcodedText" />
 
     <!-- Entrée des heures -->
@@ -27,10 +28,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:gravity="center"
         android:hint="@string/hours"
         android:inputType="number"
-        android:textSize="18sp"
-        android:gravity="center"/>
+        android:textSize="18sp" />
 
     <!-- Entrée des minutes -->
     <EditText
@@ -38,27 +39,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:gravity="center"
         android:hint="@string/minutes"
         android:inputType="number"
-        android:textSize="18sp"
-        android:gravity="center" />
+        android:textSize="18sp" />
 
     <!-- Bouton pour commencer le chronomètre -->
     <Button
         android:id="@+id/btnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingTop="16dp"
         android:text="@string/start"
-        android:textSize="18sp"
-        android:paddingTop="16dp" />
+        android:textSize="18sp" />
 
     <!-- Chronomètre pour afficher le temps restant -->
     <Chronometer
         android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:gravity="center"
         android:paddingTop="16dp"
-        android:gravity="center" />
+        android:textSize="20sp" />
 
 </LinearLayout>
